@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Payment Demo</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="icon" href="./images/favicon.ico" type="image/ico" />
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js">
+  </script>
+</head>
+
+<body class="light">
+  <!-- Webhook Toasts -->
+  <div id="toast_bar"></div>
+
+  <!-- Loader -->
+  <div class="loader"></div>
+
+  <!-- Theme switcher -->
+  <div class="switch">
+    <input type="checkbox" id="theme-switch" />
+    <label class="switch" for="theme-switch"></label>
+  </div>
+
+  <div id="payment-form" style="display: none;">
+
+    <div id="inputs">
+
+      <!-- Cardholder Name -->
+      <div class="input-wrapper name">
+        <label id="name-label" for="name-input">Cardholder Name</label>
+        <input type="text" name="cc-name" id="cardholder" placeholder="John Smith"
+          autocomplete="cc-name">
+      </div>
+
+      <!-- Card Number -->
+      <div class="input-wrapper card-number">
+        <label id="card-label">Card Number</label>
+        <div class="card-and-scheme">
+          <div class="card-number-frame"></div>
+          <img id="card-scheme" />
+        </div>
+        <div class="hint card-hint hide"><span class="line"></span>
+          4242 4242 4242 4242
+        </div>
+      </div>
+
+      <div class="date-and-cvv">
+
+        <!-- Expiry Date -->
+        <div class="input-wrapper expiry-date">
+          <label id="date-label">Expiry Date</label>
+          <div class="expiry-date-frame"></div>
+          <div class="hint expiry-date-hint hide">
+            Future Date<span class="line"></span>
+          </div>
+        </div>
+
+        <!-- Cvv -->
+        <div class="input-wrapper cvv">
+          <label id="cvv-label">CVV</label>
+          <div class="cvv-frame"></div>
+          <div class="hint cvv-hint hide"><span class="line"></span>100</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="button-area">
+      <button class="pay" disabled>Pay Now</button>
+      <div class="loader pay-loader hide"></div>
+      <div id="outcome"></div>
+      <div class="error hide">
+        <span class="line"></span>
+        <div id="error-hint" class="hint"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Checkout.com CDN -->
+  <script src="https://cdn.checkout.com/js/framesv2.min.js"></script>
+
+  <!-- Our scripts -->
+  <script src="./script.js"></script>
+  <script src="./frames.js"></script>
+
+</body>
+
+</html>
