@@ -14,4 +14,59 @@ route.post("/payWithToken", async (req, res) => {
   res.send(payment);
 });
 
+// Get payment details
+route.post("/getPaymentById", async (req, res) => {
+  try {
+    const details = await cko.payments.get(req.body.id);
+    res.send(details);
+  } catch (error) {
+    res.send(500, error);
+  }
+});
+
+// !!! Google Pay  ==>
+
+route.post("/payWithGoogle", async (req, res) => {
+  const { signature, protocolVersion, signedMessage } = req.body;
+
+  let tokenResponse;
+
+  console.log("Google token: ", req.body);
+
+  try {
+    tokenResponse = await cko.tokens.request({
+      // type:"googlepay" is inferred
+      token_data: {
+        signature,
+        protocolVersion,
+        signedMessage,
+      },
+    });
+  } catch (error) {
+    res.send(500, error);
+  }
+
+  console.log("CKO token: ", tokenResponse.token);
+
+  /* Do payment request w/ token */
+  const token = tokenResponse.token;
+
+  try {
+    const payment = await cko.payments.request({
+      source: {
+        // type:"token" is inferred
+        token: token,
+      },
+      currency: "GBP",
+      amount: 400, // pence
+      reference: "GPAY-TEST",
+    });
+    res.send(payment);
+  } catch (error) {
+    res.send(500, error);
+  }
+});
+
+// <== !!! Google Pay
+
 module.exports = route;

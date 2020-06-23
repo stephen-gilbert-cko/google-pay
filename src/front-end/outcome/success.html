@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirmation</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="icon" href="./images/favicon.ico" type="image/ico" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js">
+  </script>
+</head>
+
+<body class="light">
+  <!-- Webhook Toasts -->
+  <div id="toast_bar"></div>
+
+  <div class="confirmation">
+    <div id="confirm-animation"></div>
+    <div id="message">
+      <h3 class="approved"></h3>
+      <div class="card-confirmation text-appear">
+        <img id="scheme" />
+        <p id="last-four"></p>
+      </div>
+    </div>
+    <button class="back text-appear">New Payment</button>
+  </div>
+
+  <p id="error"></p>
+  <script src="./outcome/script.js"></script>
+</body>
+
+</html>

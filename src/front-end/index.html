@@ -5,8 +5,7 @@
   <title>Payment Demo</title>
   <link rel="stylesheet" href="./style.css" />
   <link rel="icon" href="./images/favicon.ico" type="image/ico" />
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js">
   </script>
 </head>
 
@@ -30,8 +29,7 @@
       <!-- Cardholder Name -->
       <div class="input-wrapper name">
         <label id="name-label" for="name-input">Cardholder Name</label>
-        <input type="text" name="cc-name" id="cardholder" placeholder="John Smith"
-          autocomplete="cc-name">
+        <input type="text" name="cc-name" id="cardholder" placeholder="John Smith" autocomplete="cc-name">
       </div>
 
       <!-- Card Number -->
@@ -75,6 +73,12 @@
         <span class="line"></span>
         <div id="error-hint" class="hint"></div>
       </div>
+
+      <!-- Google Pay button -->
+      <div id="container"></div>
+      <script async
+        src="https://pay.google.com/gp/p/js/pay.js"
+        onload="onGooglePayLoaded()"></script>
     </div>
   </div>
   </div>
@@ -85,6 +89,7 @@
   <!-- Our scripts -->
   <script src="./script.js"></script>
   <script src="./frames.js"></script>
+  <script src="./gpay.js"></script>
 
 </body>
 
