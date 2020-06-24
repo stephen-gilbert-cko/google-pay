@@ -20,6 +20,7 @@ const switcher = document.getElementById("theme-switch");
 const outcome = document.getElementById("outcome");
 const error = document.querySelector(".error");
 const errorMessage = document.getElementById("error-hint");
+const gpayContainer = document.getElementById("container");
 var PAYMENT_ID = "";
 var theme = "";
 
@@ -44,6 +45,8 @@ const handleResponse = (data) => {
       cardInput.classList.add("success");
       dateInput.classList.add("success");
       cvvInput.classList.add("success");
+      // Hide Google Pay button
+      gpayContainer.classList.add("hide");
 
       payButton.style.pointerEvents = "auto";
     }, 1200);
@@ -63,7 +66,7 @@ const handleResponse = (data) => {
 };
 
 const cleanState = () => {
-  payButton.innerHTML = "Pay Now";
+  payButton.innerHTML = "Pay with Card";
   payButton.style.backgroundColor = "var(--button-background)";
   pageLoader.style.display = "";
   form.style.display = "none";
@@ -101,6 +104,7 @@ const cleanState = () => {
   cvvInput.classList.remove("success");
   error.classList.add("hide");
   errorMessage.innerHTML = "Payment declined";
+  gpayContainer.classList.remove("hide");
 };
 
 // Utility function to send HTTP calls to our back-end API

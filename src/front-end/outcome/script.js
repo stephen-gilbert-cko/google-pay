@@ -1,5 +1,4 @@
 const schemeIcon = document.getElementById("scheme");
-const lastFour = document.getElementById("last-four");
 const errorMessage = document.getElementById("error");
 const outcome = document.getElementById("confirm-animation");
 const toastBar = document.getElementById("toast_bar");
@@ -27,7 +26,6 @@ if (theme) {
 // Get ID from the URL
 const urlParams = new URLSearchParams(window.location.search);
 const payId = urlParams.get("id");
-console.log(payId);
 
 const showOutcome = () => {
   // Get payment details
@@ -36,11 +34,10 @@ const showOutcome = () => {
       method: "POST",
       route: "/getPaymentById",
       body: {
-        id: payId
-      }
+        id: payId,
+      },
     },
-    data => {
-      console.log("Payment details: ", data);
+    (data) => {
       // Confirmation details
       if (data.approved) {
         PAYMENT_ID = data.id;
@@ -54,8 +51,6 @@ const showOutcome = () => {
         );
         schemeIcon.setAttribute("alt", data.source.scheme);
         schemeIcon.style.setProperty("display", "block");
-
-        lastFour.innerHTML = "****" + data.source.last4;
       } else {
         approved.innerHTML = "Test payment failed";
         outcome.style.backgroundColor = "var(--red)";
@@ -72,9 +67,9 @@ const http = ({ method, route, body }, callback) => {
     method,
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   };
 
   if (method.toLocaleLowerCase() === "get") {
@@ -83,15 +78,15 @@ const http = ({ method, route, body }, callback) => {
 
   // Timeout after 10 seconds
   timeout(10000, fetch(`${window.location.origin}${route}`, requestData))
-    .then(res => res.json())
-    .then(data => callback(data))
-    .catch(er => (errorMessage.innerHTML = er));
+    .then((res) => res.json())
+    .then((data) => callback(data))
+    .catch((er) => (errorMessage.innerHTML = er));
 };
 
 // For connection timeout error handling
 const timeout = (ms, promise) => {
-  return new Promise(function(resolve, reject) {
-    setTimeout(function() {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
       reject(new Error("Connection timeout"));
     }, ms);
     promise.then(resolve, reject);
@@ -99,7 +94,7 @@ const timeout = (ms, promise) => {
 };
 
 // Capture webhooks
-socket.on("webhook", webhookBody => {
+socket.on("webhook", (webhookBody) => {
   if (webhookBody.paymentId !== PAYMENT_ID) {
     return;
   }
@@ -123,15 +118,15 @@ socket.on("webhook", webhookBody => {
   toastBar.append(newToast);
   newToast.classList.add("show");
 
-  setTimeout(function() {
+  setTimeout(function () {
     newToast.classList.remove("show");
     newToast.outerHTML = "";
   }, 5000);
 });
 
 // Go back to payment input
-backButton.onclick = function() {
-  location.replace('/');
-}
+backButton.onclick = function () {
+  location.replace("/");
+};
 
 showOutcome();

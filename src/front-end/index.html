@@ -66,13 +66,15 @@
     </div>
 
     <div class="button-area">
-      <button class="pay" disabled>Pay Now</button>
+      <button class="pay" disabled>Pay with Card</button>
       <div class="loader pay-loader hide"></div>
       <div id="outcome"></div>
       <div class="error hide">
         <span class="line"></span>
         <div id="error-hint" class="hint"></div>
       </div>
+
+      <script src="./gpay.js"></script>
 
       <!-- Google Pay button -->
       <div id="container"></div>
@@ -89,7 +91,6 @@
   <!-- Our scripts -->
   <script src="./script.js"></script>
   <script src="./frames.js"></script>
-  <script src="./gpay.js"></script>
 
 </body>
 
