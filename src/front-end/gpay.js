@@ -217,7 +217,6 @@ function onGooglePaymentButtonClicked() {
  * @see {@link https://developers.google.com/pay/api/web/reference/response-objects#PaymentData|PaymentData object reference}
  */
 function processPayment(paymentData) {
-  console.log();
   // pass payment token to Checkout.com to process payment
   paymentToken = paymentData.paymentMethodData.tokenizationData.token;
   payWithCheckout(paymentToken);
@@ -235,7 +234,6 @@ function payWithCheckout(googleToken) {
       },
     },
     (response) => {
-      console.log("API response: ", response);
       window.location.href = "/outcome" + "?id=" + response.id;
     }
   );

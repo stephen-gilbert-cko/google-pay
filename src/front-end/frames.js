@@ -227,6 +227,7 @@ Frames.addEventHandler(Frames.Events.PAYMENT_METHOD_CHANGED, (event) => {
 
 // When Frames has tokenized the card
 Frames.addEventHandler(Frames.Events.CARD_TOKENIZED, (event) => {
+  console.log("Card tokenized: ", event);
   payWithToken(event.token);
 });
 
