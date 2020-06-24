@@ -13,7 +13,6 @@ const baseRequest = {
  * Card networks supported by your site and your gateway
  *
  * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
- * @todo confirm card networks supported by your site and gateway
  */
 const allowedCardNetworks = ["AMEX", "DISCOVER", "JCB", "MASTERCARD", "VISA"];
 
@@ -21,8 +20,6 @@ const allowedCardNetworks = ["AMEX", "DISCOVER", "JCB", "MASTERCARD", "VISA"];
  * Card authentication methods supported by your site and your gateway
  *
  * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
- * @todo confirm your processor supports Android device tokens for your
- * supported card networks
  */
 const allowedCardAuthMethods = ["PAN_ONLY", "CRYPTOGRAM_3DS"];
 
@@ -32,7 +29,6 @@ const allowedCardAuthMethods = ["PAN_ONLY", "CRYPTOGRAM_3DS"];
  * The Google Pay API response will return an encrypted payment method capable
  * of being charged by a supported gateway after payer authorization
  *
- * @todo check with your gateway on the parameters to pass
  * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#gateway|PaymentMethodTokenizationSpecification}
  */
 const tokenizationSpecification = {
@@ -222,9 +218,8 @@ function onGooglePaymentButtonClicked() {
  */
 function processPayment(paymentData) {
   console.log();
-  // @todo pass payment token to your gateway to process payment
+  // pass payment token to Checkout.com to process payment
   paymentToken = paymentData.paymentMethodData.tokenizationData.token;
-
   payWithCheckout(paymentToken);
 }
 
@@ -239,10 +234,9 @@ function payWithCheckout(googleToken) {
         signedMessage: JSON.parse(googleToken).signedMessage,
       },
     },
-    // This function is called after the server code is executed
     (response) => {
-      console.log("CKO API response: ", response);
-      window.location.href = "/success" + "?id=" + response.id;
+      console.log("API response: ", response);
+      window.location.href = "/outcome" + "?id=" + response.id;
     }
   );
 }

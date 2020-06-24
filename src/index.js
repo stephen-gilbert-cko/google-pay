@@ -26,8 +26,8 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./front-end/index.html"));
 });
 
-app.get("/success", (req, res) => {
-  res.sendFile(path.join(__dirname, "./front-end/outcome/success.html"));
+app.get("/outcome", (req, res) => {
+  res.sendFile(path.join(__dirname, "./front-end/outcome/outcome.html"));
 });
 
 const port = process.env.PORT || 8080;

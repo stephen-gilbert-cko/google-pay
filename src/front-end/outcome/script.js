@@ -4,6 +4,7 @@ const outcome = document.getElementById("confirm-animation");
 const toastBar = document.getElementById("toast_bar");
 const backButton = document.querySelector(".back");
 const approved = document.querySelector(".approved");
+const gpayIcon = document.getElementById("gpay");
 const cross =
   '<svg class="cross" viewBox="0 0 50 50"><path class="cross draw" fill="none" d="M16 16 34 34 M34 16 16 34"></path></svg>';
 
@@ -23,7 +24,7 @@ if (theme) {
   document.body.classList.add(theme);
 }
 
-// Get ID from the URL
+// Get payment ID from the URL
 const urlParams = new URLSearchParams(window.location.search);
 const payId = urlParams.get("id");
 
@@ -47,11 +48,12 @@ const showOutcome = () => {
 
         schemeIcon.setAttribute(
           "src",
-          "images/card-icons/" + data.source.scheme.toLowerCase() + ".svg"
+          "../images/card-icons/" + data.source.scheme.toLowerCase() + ".svg"
         );
         schemeIcon.setAttribute("alt", data.source.scheme);
         schemeIcon.style.setProperty("display", "block");
       } else {
+        gpayIcon.classList.add("hide");
         approved.innerHTML = "Test payment failed";
         outcome.style.backgroundColor = "var(--red)";
         outcome.innerHTML = cross;

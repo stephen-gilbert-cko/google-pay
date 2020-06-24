@@ -614,13 +614,6 @@ input[type="checkbox"]:checked + label:after {
   left: 100px;
 }
 
-#last-four {
-  position: absolute;
-  top: 36px;
-  left: 135px;
-  letter-spacing: 1px;
-}
-
 #confirm-animation {
   border-radius: 50%;
   width: 100px;

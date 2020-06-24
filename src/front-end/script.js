@@ -126,7 +126,7 @@ const http = ({ method, route, body }, callback) => {
   timeout(10000, fetch(`${window.location.origin}${route}`, requestData))
     .then((res) => res.json())
     .then((data) => callback(data))
-    .catch((er) => errorMessage.innerHTML = er);
+    .catch((er) => (errorMessage.innerHTML = er));
 };
 
 // For connection timeout error handling
