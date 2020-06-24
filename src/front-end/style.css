@@ -762,4 +762,5 @@ input[type="checkbox"]:checked + label:after {
   position: absolute;
   top: 100px;
   left: 35px;
+  margin-bottom: 20px;
 }
