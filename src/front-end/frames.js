@@ -1,4 +1,4 @@
-const publicKey = "pk_test_7d8d24fc-ffdb-4efc-b945-a19847ce319a";
+const publicKey = "pk_test_8e82cd18-8a67-49cc-9274-951c7ca97cf4";
 
 const initializeFrames = () => {
   if (theme == "dark") {

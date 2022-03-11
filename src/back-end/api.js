@@ -1,6 +1,6 @@
 const route = require("express").Router();
-const ckoPublicKey = "pk_test_7d8d24fc-ffdb-4efc-b945-a19847ce319a";
-const ckoSecretKey = "sk_test_bf908821-87a2-43bf-9e9f-77a1d4fffed2";
+const ckoPublicKey = "pk_test_8e82cd18-8a67-49cc-9274-951c7ca97cf4";
+const ckoSecretKey = "sk_test_f110e35a-5b8a-42dc-8cea-e8c9e366fab6";
 const { Checkout } = require("checkout-sdk-node");
 const cko = new Checkout(ckoSecretKey, { pk: ckoPublicKey });
 
